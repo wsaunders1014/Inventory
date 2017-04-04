@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="23px" viewBox="0 0 17 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>download-icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1---iMover-Inventory---Select-Categories" transform="translate(-541.000000, -980.000000)" fill="#FFFFFF">
+            <g id="download-icon" transform="translate(537.000000, 980.000000)">
+                <g id="Group" transform="translate(0.000000, 16.000000)">
+                    <rect id="Rectangle-path" x="4.27787" y="3.2938" width="16.44419" height="3.43833"></rect>
+                    <rect id="Rectangle-path" transform="translate(4.216270, 3.617130) rotate(90.000000) translate(-4.216270, -3.617130) " x="0.71627" y="0.11713" width="6.61507" height="3.43833"></rect>
+                    <rect id="Rectangle-path" transform="translate(17.222130, 3.617130) rotate(90.000000) translate(-17.222130, -3.617130) " x="13.72213" y="0.11713" width="6.61507" height="3.43833"></rect>
+                </g>
+                <g id="Group" transform="translate(4.000000, 6.000000)">
+                    <rect id="Rectangle-path" transform="translate(5.594034, 6.076957) rotate(45.000000) translate(-5.594034, -6.076957) " x="-0.23434135" y="4.35779186" width="11.65675" height="3.43833"></rect>
+                    <rect id="Rectangle-path" transform="translate(11.406654, 6.072314) rotate(-45.045880) translate(-11.406654, -6.072314) " x="5.5740552" y="4.35080384" width="11.66235" height="3.44302"></rect>
+                </g>
+                <rect id="Rectangle-path" x="10.7808" y="0.27249" width="3.44302" height="14.73892"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,365 @@
+<?php
+	$this->headLink()
+		 ->appendStylesheet('http://fonts.googleapis.com/css?family=Cabin:400,500,600,700')
+		 ->appendStylesheet('http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700')	 
+		 ->appendStylesheet('/css/jquery-ui.min.css')
+		 ->appendStylesheet('/css/font-awesome.min.css')
+		 ->appendStylesheet('/css/perfect-scrollbar.min.css')
+		 ->appendStylesheet('/css/inventory.css');
+	$this->inlineScript()
+		 ->appendFile('/js/jquery-2.1.1.min.js')
+		 ->appendFile('/js/jquery-ui-1.10.4.min.js')
+		 ->appendFile('/js/jquery.scrollTo.min.js')
+		 ->appendFile('/js/perfect-scrollbar.with-mousewheel.min.js')
+		 ->appendFile('http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js')
+		 ->appendFile('/js/iv.js');
+?>    	
+
+<?php $item=array(); $inventory = array(); $room_type = array(); $sub_category = array(); $value= null; $sub_c = array(); ?>
+<?php 
+	foreach ($inventories as $i) : 
+		$inventory[] = $i;
+	endforeach; 
+ ?>
+
+<?php 
+	
+	foreach ($items as $it) : 
+		$item[] = $it; 
+	endforeach; 
+ ?>
+
+<?php foreach ($item as $i) : 
+		if (in_array($i->category, $room_type)) 
+			{ continue; } 
+		else { $room_type[] = $i->category; $value = $i->category; } ?>
+<?php endforeach; ?>
+
+<?php foreach ($item as $i) : 
+		if (in_array($i->sub_category, $sub_category)) 
+			{ continue; } 
+		else { $sub_category[] = $i->sub_category; $value = $i->sub_category; } ?>
+<?php endforeach; ?>
+
+<?php if(isset($sub_cat)) {
+	foreach ($sub_cat as $s) {
+		$sub_c[] = $s;
+	}
+} ?>
+		<section class="main-header">
+    		<div class="container_12">
+                <div class="clearfix">
+        			<div class="column eight logo">
+        				<h4>FreeMovingQuote.com</h4>
+        			</div>
+                    <div class="column two main-header-contact">
+                        <h5>Questions? Call us Today:</h5>
+                        <h4>(888) 683-3031</h4>
+                    </div>
+                </div>
+    		</div>
+    	</section>
+    	<section class="my-app">
+		    <section class="container_12">
+				<div class="header clearfix blue-bg">
+					<ul class="header_steps list-unstyled inline-listed column nine">
+						<li class="step-1 active">
+							<div class="step-wrap clearfix">
+								<i class="fa fa-plus-circle fa-lg"></i><h4>1 Add / Edit rooms</h4>
+							</div>
+						</li>
+						<li class="step-2">
+							<div class="step-wrap clearfix">
+								<i class="fa fa-list-ul fa-lg"></i><h4>2 Add furniture</h4>
+							</div>
+						</li>
+						<li class="step-3">
+							<div class="step-wrap clearfix">
+								<i class="fa fa-file fa-lg"></i><h4>3 Review your inventory</h4>
+							</div>
+						</li>
+						<li class="step-4">
+							<div class="step-wrap clearfix">
+								<i class="fa fa-check fa-lg"></i><h4>4 Confirmation</h4>
+							</div>
+
+						</li>
+					</ul>
+						
+					<div class="header_help column one">
+						<i class="fa fa-question-circle fa-lg"></i>
+					</div>
+				</div>
+				<div class="header-gap">
+				</div>
+			</section>
+
+			<section class="container_12">
+			    <div class="body clearfix">
+				    <div class="page_1 active">
+					    <div class="title light-gray-bg">
+							<h4>What rooms are you moving in your house? <span style="color:#969696">(We've already added your <em>#</em> bedrooms, don't forget to add all your rooms below)</span></h4>
+						</div>
+						
+						<div class="page_1_body ">
+							
+							<div class="room_table">
+								<div class="warning">
+									<h4 style="color:white; background-color:#d85366;font-style:italic;"><i class="fa fa-exclamation-circle"></i> You do not have any room yet, please create your rooms first</h4>
+								</div>
+								
+								<div class="table_title light-gray-bg clearfix">
+									<h4 class="column" style="width:42%">Room name</h4>
+									<h4 class="column" style="width:44%">Room type</h4>
+									<h4 class="column" style="width:14%">Delete</h4>
+								</div>
+								<?php $roomIndex= 0; ?>
+								<div class="table_room_list">
+									<?php foreach ($inventory as $c) : ?>
+									<div class='one-room clearfix' data-index='<?php echo $roomIndex; ?>'>
+		 								<div class='room-name column' style='width:43%'><h4><?php echo $c->room_name; ?></h4></div>
+		  								<div class='edit-area column' style='width:43%; display:none'><input type='text' item_num='<?php echo $c->item_num; ?>' value='<?php echo $c->room_name; ?>' maxLength='25'></div>
+		  								<div class='room-type column' style='width:43%; margin-top:2px;'>
+		  									<select>
+		  										<?php if($c->room_type != null) { $default = ucfirst($c->room_type); } ?>
+		  										<?php foreach ($room_type as $r): { 
+		  											echo ($r == $default) ? "<option selected=\"selected\">$r</option>":"<option>$r</option>";
+		  										} ?>
+		  										<?php endforeach; ?>
+		  									</select>
+		  								</div>
+		  								<div class='room-delete column' item_num='<?php echo $c->item_num; ?>' style='width:14%; margin-top:4px;'><i class='fa fa-times'></i></div>
+		  								<?php $roomIndex++; ?>
+		  							</div>
+		  							<?php endforeach; ?>
+								</div>
+							
+							
+							<div class="table_btns clearfix">
+								<div class="add_room_btn">
+									<button class="btns">+ Add a room</button>
+								</div>
+								
+								<div class="add_fur_btn">
+									<button class="btns">Next Step</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page_2 clearfix">
+						<div class="page_2_left column three light-gray-bg">
+							<div class="left_title">
+								<h4>Add furniture to your rooms</h4>
+							</div>
+							
+							<div class="room-list">
+								<div>
+									<?php foreach ($inventory as $i): ?>
+										<div class='each-room clearfix' data-sideRoomtype ='<?php echo $i->room_type; ?>'><h4 class='name'><?php echo $i->room_name; ?></h4></div>
+									<?php endforeach; ?>
+									
+								</div>
+								<div class="add_room_link">
+									<h4>+ Add another room </h4>
+								</div>
+							</div>
+							
+							
+						</div>
+						
+						<div class="page_2_right column seven" >
+							
+							<div class="right_title clearfix light-gray-bg">
+								<i class="fa fa-angle-double-right"></i><h4>Bedroom #1</h4>
+							</div>
+							
+							<div class="mainbody">
+								<div class="search-bar" style='position:relative'>
+									<input type="search" name="search-item" placeholder="Start typing to find and add items"/>
+									<div class="search-result">
+										<div class="clearfix">
+										</div>
+									</div>
+									
+								</div>
+								
+								<div class="item-list clearfix">
+									<h4 class="item-list-title">Select category (left) and add items (right) to this room</h4>
+		  							
+									<div class="item-type column five">
+										<div>
+											<?php foreach ($sub_category as $r):  ?>
+											<div class='one-type clearfix'>
+												<div class='column nine'><h4><?php echo $r; ?></h4></div>
+					  							<div class='column one'><i class='fa fa-angle-right'></i></div>
+					  						</div>
+
+										<?php endforeach; ?>	
+										</div>								
+									</div>	
+									
+									<div class="item-size column five">
+										<?php  foreach ($sub_cat as $i) : ?>
+												<div>
+													<div class='one-item with-size clearfix' data-item-name='<?php echo $i; ?>'>
+						  							<div class='column eight'><h4><?php echo $i; ?></h4></div>
+						  							<div class='column two'><i class='fa fa-angle-down'></i></div>
+						  							</div>
+						  							<div class='dropdown clearfix'></div>
+												</div>	
+										<?php endforeach; ?>
+										
+									</div>
+								</div>
+								
+								<div class="add-item-btn clearfix">
+									<h4>Not finding an item in our list?</4><button class="btns">Add unlisted item</button>
+								</div>
+
+								<div class="inventory-list">
+									<h4 class="item-list-title"><span>Bedroom #1</span> item list</h4>
+									<br>
+									<div id="my-scroll-1">
+										<div class="in-list clearfix" >
+										</div>
+									</div>
+								</div>
+								
+								<div class="review-in-btn clearfix" >
+									<button class="btns">Next Step</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="page_3 clearfix">
+						<div class="page_3_left column seven ">
+							<div class="left_title light-gray-bg">
+								<h4>Review your inventory</h4>
+							</div>
+							
+							<div class="final-in-list">
+								<div class="inventory">
+									
+								</div>
+							</div>
+						</div>
+						
+						<div class="page_3_right column three light-gray-bg">
+							<div class="right_title">
+								<h4>Summary</h4>
+							</div>
+							
+							<div class="summary clearfix">
+								<div class="item-num column five">
+									<h1>0</h1>
+									<h4>items in total</h4>
+								</div>
+								
+								<div class="room-num column five">
+									<h1>0</h1>
+									<h4>rooms in total</h4>
+								</div>
+							</div>
+							
+							<div class="more-btn-title">
+								<h4>Forgot something?</h4>
+							</div>
+							
+							<div class="more-btns">
+								<div class="clearfix">
+									<div class="column " style="width:68%">
+										<h4>Miss an item?</h4>
+									</div class="column " style="width:32%">
+									<div>
+										<button class="add-item-page-3">Add item</button>
+									</div>
+								</div>
+									
+								<div class="clearfix">
+									<div class="column" style="width:68%">
+										<h4>Need another room?</h4>
+									</div class="column" style="width:32%">
+									<div>
+										<button class='add-room-page-3'>Add room</button>
+									</div>
+								</div>
+							</div>
+							
+							<div class="submit-btn">
+								<button class="btns">Submit your inventory</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="page_4 step_4" >
+						<h1>Thanks for your submission of your inventory list</h1>
+						<h3>Professional movers will contact you shortly</h3>
+						<table>
+							<tr>
+								
+								<th>Total item No.</th>
+								<th>Total rooms No.</th>
+								<th>Download your list</th>
+							</tr>
+							<tr>
+								<th>45</th>
+								<th>96</th>
+								<th><i class="fa fa-download"></i></th>
+							</tr>
+						</table>
+						<br>
+						<br>
+						<div class="info">
+							<p >For more info please call : (888) 683 - 3031</p>
+							
+							<div class="suvey-1 active">
+									<h4>Quick feedback: Is this app easy to use?</h4>
+									<button style="margin-left:130px;">Yes</button><button>No</button>
+							</div>
+							<div class="suvey-2">
+								<h4>Tell us what you think</h4>
+								<textarea rows="3" style="width:100%" placeholder="Your comments..." /></textarea>
+								<button style="float:right; margin-right:0;">Submit</button>
+							</div>
+						</div>
+						
+					    
+						
+						
+					</div>
+					
+				</div>
+
+				<div class="add-room-form" title="Add another room?" style="display:none;">
+                    <form>
+                        <fieldset style="border:0;outline:0;">
+                            <label>What is the type of the room?</label><br>
+                            <select>
+		  						<?php foreach ($item as $i) : if ($value == $i->category) { continue; } else { ?>
+		  							<option name="roomtype">
+		  								<?php echo $i->category; ?>
+		  								<?php $value = $i->category; ?>
+		  							</option>
+		  							<?php } ?>
+		  						<?php endforeach; ?>
+		  					</select>
+							<br>
+							<label>Optional:Rename this room, i.e. "Billy's Room"</label>
+                            <input type="text" name="roomname" id="input-room-name" placeholder="Name" maxlength="25" value="Bedroom"/><br> 
+                            <br><button id="add_room">ADD</button>
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div class="delete-window" title="Delete the room?">
+                    <form>
+                        <fieldset style="border:0;outline:0;">
+                            <label>Are you sure you want to delete this room?</label><br>
+                        </fieldset>
+                    </form>
+                </div>
+			</section>
+		</section>

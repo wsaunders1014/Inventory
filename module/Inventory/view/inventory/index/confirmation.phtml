@@ -1,0 +1,117 @@
+<?php
+	$this->headLink()
+		 ->appendStylesheet('http://fonts.googleapis.com/css?family=Cabin:400,500,600,700')
+		 ->appendStylesheet('http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700')	 
+		 ->appendStylesheet('https://fonts.googleapis.com/css?family=Raleway:400,700')
+		 ->appendStylesheet('/css/inventory/jquery-ui.min.css')
+		 ->appendStylesheet('/css/inventory/font-awesome.min.css')
+		 ->appendStylesheet('/css/inventory/perfect-scrollbar.min.css')
+		 ->appendStylesheet('/css/inventory/inventory.min.css');
+	$this->inlineScript()
+		 ->appendFile('/js/inventory/jquery-2.1.1.min.js')
+		 ->appendFile('/js/inventory/jquery.validate.min.js')
+		 ->appendFile('/js/inventory/jquery-ui-1.10.4.min.js')
+		 ->appendFile('/js/inventory/jquery.scrollTo.min.js')
+		 ->appendFile('/js/inventory/perfect-scrollbar.with-mousewheel.min.js')
+		 //->appendFile('http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js')
+		 ->appendFile('/js/inventory/confirmation.min.js');
+?> 
+
+<header>
+<div class="container">
+<div class="header-inner clearfix">
+<div class="header-logo">
+<h1>gotMovers</h1></div>
+<div class="header-right"><span>Questions? Call us Today</span><p>(888) 683-3031</p></div></div></div>
+</header>  
+		
+        <section class="my-app">
+		
+		    <section class="container_12">
+				<div class="header clearfix light-gray-bg">
+					<ul class="header_steps list-unstyled inline-listed column nine page_4">
+						<li class="step-1">
+							<div class="step-wrap clearfix">
+								<i class="fa fa-plus-circle fa-lg"></i><h4>1 Add / Edit rooms</h4>
+							</div>
+						</li>
+						<li class="step-2">
+							<div class="step-wrap clearfix">
+								<i class="fa fa-list-ul fa-lg"></i><h4>2 Add furniture</h4>
+							</div>
+						</li>
+						<li class="step-3">
+							<div class="step-wrap clearfix">
+								<i class="fa fa-file fa-lg"></i><h4>3 Review your inventory</h4>
+							</div>
+						</li>
+						<li class="step-4 active">
+							<div class="step-wrap clearfix">
+								<i class="fa fa-check fa-lg"></i><h4>4 Confirmation</h4>
+							</div>
+						</li>
+					</ul>
+						
+<!-- 					<div class="header_help column one"> -->
+<!-- 						<i class="fa fa-question-circle fa-lg"></i> -->
+<!-- 					</div> -->
+				</div>
+				<div class="header-gap">
+				</div>
+			</section>
+			
+			<section class="container_12">
+			    <div class="body clearfix">
+				    <div class="step_4" style="display:block">
+						<h1>Thanks for your submission of your inventory list</h1>
+						<h3>Professional movers will contact you shortly</h3>
+						<table>
+							<tr>
+								<th>Name</th>
+								<th>Total item No.</th>
+								<th>Total rooms No.</th>
+<!-- 								<th>Download your list</th> -->
+							</tr>
+							<tr>
+								<th><?php 
+										$name =  empty($lead) ? '': $lead->first_name . ' '. $lead->last_name ;
+										$name = trim($name);
+									    echo (empty($name) ? 'N/A': $name);
+								 ?></th>
+								<th><?php echo $this->total_items; ?></th>
+								<th><?php echo $this->total_rooms; ?></th>
+<!-- 								<th><i class="fa fa-download"></i></th> --> 
+							</tr>
+						</table>
+						<br>
+						<br>
+						<div class="info">
+							<p >For more info please call : (888) 683 - 3031</p>
+							
+							<div class="suvey-1 active">
+									<h4>Quick feedback: Is this app easy to use?</h4>
+									<button style="margin-left:130px;">Yes</button><button>No</button>
+							</div>
+							<div class="suvey-2 ">
+								<h4>Tell us what you think</h4>
+								<form action="" method="post" id="frm_feedback" name="frm_feedback" >
+								<textarea id="feedback" name="feedback"  rows="3" style="width:100%" placeholder="Your comments..."  /></textarea>
+								<button style="float:right; margin-right:0;" type="submit" >Submit</button>
+								</form>
+							</div>
+							<div class="suvey-3">
+								<h4>Thank you for your feedback!!</h4>
+								
+							</div>
+						</div>
+						
+					    
+						
+						
+					</div>
+				</div>
+				
+			</section>
+        </section>
+		
+ <section class="footer-bg"><footer class="container"><div><p>Copyright 2016 &copy; www.GotMovers.com</p><p>7945 W Sahara Ave., Ste 205 | Las Vegas, NV 89117</p></div></footer></section>
